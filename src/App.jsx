@@ -150,71 +150,133 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', bgcolor: 'background.default', color: 'text.primary' }}>
         <AppBar position="fixed" sx={{ bgcolor: theme.palette.mode === 'dark' ? '#0F3D3E' : '#E0F7FA', boxShadow: '0 2px 10px rgba(0,0,0,0.1)', zIndex: (theme) => theme.zIndex.drawer + 1 }}>
-          <Toolbar sx={{ height: { xs: 64, sm: 72, md: 80 }, display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: { xs: 2, sm: 3, md: 4 }, py: { xs: 1, sm: 0 } }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+          <Toolbar sx={{ 
+            height: { xs: 56, sm: 64, md: 72 },
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'space-between', 
+            px: { xs: 1.5, sm: 2, md: 3 },
+            gap: 2
+          }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 1, sm: 2 } }}>
               {isMobile && (
                 <IconButton
                   color="inherit"
                   aria-label="open drawer"
                   edge="start"
                   onClick={() => setMobileOpen(!mobileOpen)}
-                  sx={{ display: { sm: 'none' } }}
+                  sx={{ mr: 1 }}
                 >
                   <MenuIcon />
                 </IconButton>
               )}
-            <Typography
-              variant="h5"
-              sx={{
-                fontWeight: 600,
-                color: theme.palette.mode === 'light' ? 'primary.main' : 'inherit',
-                cursor: 'pointer',
-                transition: 'transform 0.2s ease-in-out',
-                '&:hover': {
-                  transform: 'scale(1.05)'
-                }
-              }}
-              onClick={() => setCurrentTab(-1)}
-            >
-              StockSense
-            </Typography>
-          </Box>
-          
-          {!isMobile && (
-            <Tabs
-              value={currentTab}
-              onChange={handleTabChange}
-              sx={{
-                '& .MuiTab-root': {
-                  fontSize: '1rem',
-                  fontWeight: 500,
-                  textTransform: 'none',
-                  minWidth: 120,
-                  mx: 0.5,
-                  color: theme.palette.mode === 'light' ? 'text.primary' : 'inherit',
+              <Typography
+                variant="h5"
+                sx={{
+                  fontWeight: 600,
+                  color: theme.palette.mode === 'light' ? 'primary.main' : 'inherit',
+                  cursor: 'pointer',
+                  transition: 'transform 0.2s ease-in-out',
                   '&:hover': {
-                    color: 'primary.main',
-                    opacity: 0.8
+                    transform: 'scale(1.05)'
                   },
-                  '&.Mui-selected': {
-                    color: 'primary.main',
-                    fontWeight: 600
-                  }
-                },
-                '& .MuiTabs-indicator': {
-                  height: 3,
-                  borderRadius: '3px 3px 0 0'
-                }
-              }}
-            >
+                  fontSize: { xs: '1.2rem', sm: '1.5rem' }
+                }}
+                onClick={() => setCurrentTab(-1)}
+              >
+                StockSense
+              </Typography>
+            </Box>
+
+            {!isMobile && (
+              <Box sx={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: { xs: 1, sm: 2 },
+                flex: 1,
+                mx: { sm: 3, md: 4 },
+                justifyContent: 'flex-end'
+              }}>
+                <Tabs
+                  value={currentTab}
+                  onChange={handleTabChange}
+                  sx={{
+                    '& .MuiTab-root': {
+                      fontSize: '0.95rem',
+                      fontWeight: 500,
+                      textTransform: 'none',
+                      minWidth: 100,
+                      px: 1.5,
+                      color: theme.palette.mode === 'light' ? 'text.primary' : 'inherit',
+                      '&:hover': {
+                        color: 'primary.main',
+                        opacity: 0.8
+                      },
+                      '&.Mui-selected': {
+                        color: 'primary.main',
+                        fontWeight: 600
+                      }
+                    },
+                    '& .MuiTabs-indicator': {
+                      height: 3,
+                      borderRadius: '3px 3px 0 0'
+                    },
+                    ml: 'auto'
+                  }}
+                >
               <Tab label="Home" value={-1} />
               <Tab label="Market Analysis" value={0} />
               <Tab label="Financial Tools" value={1} />
               <Tab label="Education" value={2} />
-            </Tabs>
+              </Tabs>
+              <Box sx={{ flex: 1, maxWidth: 400, ml: { sm: 2, md: 3 } }}>
+                <Autocomplete
+                  freeSolo
+                  options={allItems}
+                  getOptionLabel={(option) => option.text}
+                  inputValue={searchQuery}
+                  onInputChange={(event, newValue) => setSearchQuery(newValue)}
+                  onChange={(event, newValue) => {
+                    if (newValue) {
+                      setCurrentTab(1);
+                      setTimeout(() => {
+                        const componentElement = document.getElementById(newValue.text.replace(/\s+/g, ''));
+                        if (componentElement) {
+                          componentElement.scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }, 100);
+                    }
+                  }}
+                  sx={{
+                    '& .MuiOutlinedInput-root': {
+                      height: '36px',
+                      borderRadius: '18px',
+                      backgroundColor: theme.palette.mode === 'light' ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.05)',
+                      backdropFilter: 'blur(8px)',
+                      boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                      transition: 'all 0.3s ease',
+                      '&:hover': {
+                        backgroundColor: theme.palette.mode === 'light' ? 'rgba(255, 255, 255, 0.95)' : 'rgba(255, 255, 255, 0.08)',
+                        boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
+                      }
+                    }
+                  }}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      placeholder="Search features..."
+                      InputProps={{
+                        ...params.InputProps,
+                        startAdornment: <SearchIcon sx={{ color: 'text.secondary', mr: 1, fontSize: '1.1rem' }} />
+                      }}
+                    />
+                  )}
+                />
+              </Box>
+            </Box>
           )}
           
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', ml: { xs: 1, sm: 2 } }}>
             <IconButton
               onClick={() => setMode(mode === 'light' ? 'dark' : 'light')}
               sx={{
@@ -233,52 +295,54 @@ const App = () => {
       </AppBar>
 
 
-      <Container maxWidth="xl" sx={{ mt: { xs: 12, sm: 14 } }}>
-        <Box sx={{ width: '100%', mb: 3 }}>
-          <Autocomplete
-            freeSolo
-            options={allItems}
-            getOptionLabel={(option) => option.text}
-            inputValue={searchQuery}
-            onInputChange={(event, newValue) => setSearchQuery(newValue)}
-            onChange={(event, newValue) => {
-              if (newValue) {
-                setCurrentTab(1);
-                setTimeout(() => {
-                  const componentElement = document.getElementById(newValue.text.replace(/\s+/g, ''));
-                  if (componentElement) {
-                    componentElement.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }, 100);
-              }
-            }}
-            sx={{
-              width: '100%',
-              '& .MuiOutlinedInput-root': {
-                height: '48px',
-                borderRadius: '24px',
-                backgroundColor: theme.palette.mode === 'light' ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.05)',
-                backdropFilter: 'blur(8px)',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-                transition: 'all 0.3s ease',
-                '&:hover': {
-                  backgroundColor: theme.palette.mode === 'light' ? 'rgba(255, 255, 255, 0.95)' : 'rgba(255, 255, 255, 0.08)',
-                  boxShadow: '0 6px 16px rgba(0,0,0,0.15)'
+      <Container maxWidth="xl" sx={{ mt: { xs: 8, sm: 10, md: 12 }, px: { xs: 1.5, sm: 2, md: 3 } }}>
+        {isMobile && (
+          <Box sx={{ width: '100%', mb: 3, px: 1 }}>
+            <Autocomplete
+              freeSolo
+              options={allItems}
+              getOptionLabel={(option) => option.text}
+              inputValue={searchQuery}
+              onInputChange={(event, newValue) => setSearchQuery(newValue)}
+              onChange={(event, newValue) => {
+                if (newValue) {
+                  setCurrentTab(1);
+                  setTimeout(() => {
+                    const componentElement = document.getElementById(newValue.text.replace(/\s+/g, ''));
+                    if (componentElement) {
+                      componentElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }, 100);
                 }
-              }
-            }}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                placeholder="Search features..."
-                InputProps={{
-                  ...params.InputProps,
-                  startAdornment: <SearchIcon sx={{ color: 'text.secondary', mr: 1, fontSize: '1.3rem' }} />
-                }}
-              />
-            )}
-          />
-        </Box>
+              }}
+              sx={{
+                width: '100%',
+                '& .MuiOutlinedInput-root': {
+                  height: '40px',
+                  borderRadius: '20px',
+                  backgroundColor: theme.palette.mode === 'light' ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.05)',
+                  backdropFilter: 'blur(8px)',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                  transition: 'all 0.3s ease',
+                  '&:hover': {
+                    backgroundColor: theme.palette.mode === 'light' ? 'rgba(255, 255, 255, 0.95)' : 'rgba(255, 255, 255, 0.08)',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
+                  }
+                }
+              }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  placeholder="Search features..."
+                  InputProps={{
+                    ...params.InputProps,
+                    startAdornment: <SearchIcon sx={{ color: 'text.secondary', mr: 1, fontSize: '1.1rem' }} />
+                  }}
+                />
+              )}
+            />
+          </Box>
+        )}
         <TabPanel value={currentTab} index={-1}>
           <HomePage onTabChange={setCurrentTab} />
         </TabPanel>
@@ -339,11 +403,18 @@ const App = () => {
         open={mobileOpen}
         onClose={() => setMobileOpen(false)}
         ModalProps={{
-          keepMounted: true, // Better open performance on mobile.
+          keepMounted: true,
         }}
         sx={{
           display: { xs: 'block', sm: 'none' },
-          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 240 },
+          '& .MuiDrawer-paper': { 
+            boxSizing: 'border-box', 
+            width: '80%', 
+            maxWidth: 280,
+            pt: 8,
+            background: theme.palette.mode === 'dark' ? 'rgba(30, 30, 30, 0.95)' : 'rgba(255, 255, 255, 0.95)',
+            backdropFilter: 'blur(8px)'
+          },
         }}
       >
         <Box sx={{ mt: 8, p: 2 }}>

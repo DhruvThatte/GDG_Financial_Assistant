@@ -63,14 +63,16 @@ const FinancialCalculator = () => {
 
     const returnRateMarks = [
         { value: 5, label: '5%' },
+        { value: 10, label: '10%' },
         { value: 15, label: '15%' },
-        { value: 25, label: '25%' }
+        { value: 20, label: '20%' }
     ];
 
     const interestRateMarks = [
-        { value: 5, label: '5%' },
-        { value: 10, label: '10%' },
-        { value: 15, label: '15%' },
+        { value: 4, label: '4%' },
+        { value: 8, label: '8%' },
+        { value: 12, label: '12%' },
+        { value: 16, label: '16%' },
         { value: 20, label: '20%' }
     ];
 
@@ -190,8 +192,11 @@ const FinancialCalculator = () => {
         '& .MuiSlider-markLabel': {
             fontSize: '0.75rem',
             fontWeight: '500',
-            marginTop: 5,
-            color: theme.palette.text.secondary
+            marginTop: '8px',
+            color: theme.palette.text.secondary,
+            '&.MuiSlider-markLabelActive': {
+                color: theme.palette.text.primary
+            }
         },
         '& .MuiSlider-valueLabel': {
             fontSize: '0.75rem',
@@ -294,6 +299,11 @@ const FinancialCalculator = () => {
                                                     ...sliderStyles['& .MuiSlider-valueLabel'],
                                                     backgroundColor: theme.palette.success.main,
                                                 },
+                                                '& .MuiSlider-markLabel': {
+                                                    ...sliderStyles['& .MuiSlider-markLabel'],
+                                                    fontSize: '0.8rem',
+                                                    mt: 1,
+                                                },
                                                 '& .MuiSlider-thumb:hover, & .MuiSlider-thumb.Mui-focusVisible': {
                                                     boxShadow: '0 0 0 8px rgba(76, 175, 80, 0.16)'
                                                 }
@@ -339,15 +349,27 @@ const FinancialCalculator = () => {
                         </Card>
                     </Grid>
 
-                    <Grid item xs={12} md={6}>
-                        <Card sx={{ borderRadius: 2, boxShadow: '0 4px 12px rgba(0,0,0,0.05)' }}>
-                            <CardContent>
+                    <Grid item xs={12} md={6} sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+                        <Card sx={{ 
+                            borderRadius: 2, 
+                            boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
+                            flex: 1,
+                            display: 'flex',
+                            flexDirection: 'column'
+                        }}>
+                            <CardContent sx={{ flex: 1 }}>
                                 <Typography variant="subtitle1" gutterBottom sx={{ fontWeight: 600 }}>
-                                    Investment Growth Projection
+                                    EMI Breakdown
                                 </Typography>
-                                <Box sx={{ height: 300, mt: 2 }}>
+                                <Box sx={{ 
+                                    height: { xs: 300, md: 400 }, 
+                                    mt: 2,
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center'
+                                }}>
                                     <ResponsiveContainer width="100%" height="100%">
-                                        <LineChart data={generateSipProjection()}>
+                                        <LineChart data={generateEmiBreakdown()}>
                                             <CartesianGrid strokeDasharray="3 3" />
                                             <XAxis dataKey="year" />
                                             <YAxis />
@@ -355,16 +377,16 @@ const FinancialCalculator = () => {
                                             <Legend />
                                             <Line
                                                 type="monotone"
-                                                dataKey="invested"
-                                                name="Amount Invested"
+                                                dataKey="principal"
+                                                name="Principal"
                                                 stroke={theme.palette.primary.main}
                                                 strokeWidth={2}
                                             />
                                             <Line
                                                 type="monotone"
-                                                dataKey="value"
-                                                name="Future Value"
-                                                stroke={theme.palette.success.main}
+                                                dataKey="interest"
+                                                name="Interest"
+                                                stroke={theme.palette.error.main}
                                                 strokeWidth={2}
                                             />
                                         </LineChart>

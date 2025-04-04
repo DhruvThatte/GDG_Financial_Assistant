@@ -190,12 +190,12 @@ const InvestmentPortfolioTracker = () => {
                     sx={{
                         borderRadius: 2,
                         textTransform: 'none',
-                        background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
-                        boxShadow: '0 3px 5px 2px rgba(33, 203, 243, .3)',
+                        background: `linear-gradient(45deg, ${theme.palette.primary.main} 30%, ${theme.palette.primary.light} 90%)`,
+                        boxShadow: `0 3px 5px 2px ${theme.palette.primary.main}33`,
                         transition: 'all 0.3s ease',
                         '&:hover': {
                             transform: 'translateY(-2px)',
-                            boxShadow: '0 6px 10px 4px rgba(33, 203, 243, .3)'
+                            boxShadow: `0 6px 10px 4px ${theme.palette.primary.main}33`
                         }
                     }}
                 >
