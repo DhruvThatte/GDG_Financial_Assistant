@@ -1,32 +1,36 @@
 
-# 📊 StockSense
+# 📊 StarkFinance
 
-**StockSense** is an AI-powered stock analysis and investment guidance platform designed to help users make smarter financial decisions. Leveraging modern web technologies and data visualization tools, StockSense simplifies the complexities of the stock market into actionable insights.
+**StarkFinance** is an AI-powered financial management and investment guidance platform designed to help users make smarter financial decisions. Leveraging modern web technologies and AI capabilities through Vision, our intelligent financial assistant, StarkFinance simplifies personal finance management and investment planning into actionable insights.
 
 ---
 
 ## 🌟 Overview
 
-StockSense aims to bridge the gap between financial literacy and smart investing by providing users with a real-time dashboard for stock analysis, trends, and personalized insights. With an intuitive user interface and blazing-fast performance powered by Vite, StockSense serves as the perfect companion for beginner and seasoned investors alike.
+StarkFinance aims to bridge the gap between financial literacy and smart money management by providing users with a comprehensive platform for financial planning, investment tracking, and AI-powered guidance. With an intuitive user interface and blazing-fast performance powered by Vite, along with Vision - our advanced AI financial assistant, StarkFinance serves as the perfect companion for anyone looking to improve their financial well-being.
 
 ---
 
 ## 🔍 Key Features
 
-- 📈 **Real-time Stock Data**: View live prices and daily performance metrics.
-- 🧠 **AI-Driven Insights**: (If applicable) Offers smart suggestions and trend forecasts.
-- 📊 **Interactive Charts**: Explore stock trends with visually-rich and responsive graphs.
-- 🔐 **Secure API Integration**: Uses environment variables to keep your API keys safe.
-- ⚡ **Lightning Fast Performance**: Thanks to Vite’s modern build system.
-- 🌙 **Dark Mode Support**: (Optional feature) Seamless theme switching for user comfort.
+- 🤖 **Vision AI Assistant**: Intelligent financial guidance powered by Google's Gemini Pro.
+- 💰 **Financial Planning**: Comprehensive tools for budgeting and expense tracking.
+- 📊 **Investment Portfolio Tracking**: Monitor and analyze your investments.
+- 📋 **Financial Questionnaire**: Personalized financial profiling and recommendations.
+- 💸 **Tax Planning**: Smart tax planning and optimization tools.
+- 📈 **Market Insights**: Real-time market analysis and trends.
+- 📚 **Educational Hub**: Financial literacy resources and guides.
+- 🌙 **Dark Mode Support**: Seamless theme switching for user comfort.
+- 🔐 **Secure Integration**: Protected API keys and user data.
 
 ---
 
 ## 🛠️ Built With
 
-- **Frontend**: HTML, JavaScript
+- **Frontend**: React, Material-UI
 - **Framework**: Vite
-- **Charting**: Victory Charts / D3.js / Chart.js (depending on actual use)
+- **AI Integration**: Google Generative AI (Gemini Pro)
+- **Charting**: Recharts
 - **Package Manager**: npm
 
 ---
@@ -38,9 +42,39 @@ GDG_Financial_Assistant/
 ├── index.html             # Entry point
 ├── vite.config.js         # Vite configuration
 ├── package.json           # Project metadata and dependencies
-├── .env                   # Environment variables
-├── node_modules/          # Installed dependencies
-└── ...
+├── package-lock.json      # Lockfile for dependencies
+├── .gitignore             # Git ignore file
+├── README.md              # Project documentation
+├── src/                   # Source files
+│   ├── App.jsx            # Main App component
+│   ├── main.jsx           # Main entry file
+│   ├── router.jsx         # Router configuration
+│   ├── config/            # Configuration files
+│   │   └── api.js         # API configuration
+│   ├── contexts/          # Context providers
+│   │   └── UserProfileContext.jsx # User profile context
+│   ├── components/        # React components
+│   │   ├── AIAssistant.jsx
+│   │   ├── EducationalHub.jsx
+│   │   ├── ExpenseTracker.jsx
+│   │   ├── FinancialAssistant.jsx
+│   │   ├── FinancialCalculator.jsx
+│   │   ├── FinancialQuestionnaire.jsx
+│   │   ├── Footer.jsx
+│   │   ├── GlobalNews.jsx
+│   │   ├── HomePage.jsx
+│   │   ├── InvestmentPortfolioTracker.jsx
+│   │   ├── LiveStocks.jsx
+│   │   ├── MarketInsights.jsx
+│   │   ├── MarketSentimentAnalysis.jsx
+│   │   ├── StockMarketTrends.jsx
+│   │   ├── TabPanel.jsx
+│   │   └── TaxPlanner.jsx
+│   ├── services/          # Service files
+│   │   └── api.js         # API service
+│   └── utills/            # Utility files
+│       └── promptBuilder.js # Prompt builder utility
+└── node_modules/          # Installed dependencies
 ```
 
 ---
@@ -71,7 +105,7 @@ Make sure you have **Node.js** and **npm** installed.
    Create a `.env` file in the root directory:
 
    ```env
-   VITE_API_KEY=your_api_key_here
+   VITE_GEMINI_API_KEY=your_api_key_here
    ```
 
 4. **Run the application**
@@ -86,16 +120,11 @@ Make sure you have **Node.js** and **npm** installed.
 
 ## 🤖 Future Enhancements
 
-- Integration with financial news APIs
-- User authentication and portfolio tracking
-- Predictive analytics using ML models
-- Alerts and watchlist functionality
-
----
-
-## 📄 License
-
-This project is licensed under the **MIT License** — feel free to use and modify it as needed.
+- Enhanced AI capabilities with more financial models
+- Advanced portfolio analytics and recommendations
+- Real-time financial news integration
+- Mobile app development
+- Social features for community learning
 
 ---
 
@@ -111,6 +140,7 @@ If you have questions, suggestions, or just want to say hi, feel free to reach o
 thatte14dhruv@gmail.com
 shubhankarvyas02@gmail.com
 tiwaridhruv.dh12@gmail.com
+
 ---
 
-Thanks for checking out **StockSense**! 🚀
+Thanks for checking out **StarkFinance**! 🚀

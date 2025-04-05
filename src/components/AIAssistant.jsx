@@ -25,7 +25,7 @@ const AIAssistant = () => {
     const theme = useTheme();
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState([{
-        text: 'Hi! I\'m your AI assistant. How can I help you today?',
+        text: 'Hi! I\'m Vision, your AI assistant. How can I help you today?',
         sender: 'ai'
     }]);
     const [input, setInput] = useState('');

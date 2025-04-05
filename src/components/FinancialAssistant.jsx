@@ -38,7 +38,7 @@ const FinancialAssistant = () => {
   const [messages, setMessages] = useState([
     {
       type: 'assistant',
-      content: "👋 Welcome! I'm Zeni, your personal financial guide. Whether you're looking to grow your wealth, plan for the future, or make smarter money decisions, I'm here to help with personalized advice tailored just for you. What's on your mind today?",
+      content: "👋 Welcome! I'm Vision, your personal financial guide. Whether you're looking to grow your wealth, plan for the future, or make smarter money decisions, I'm here to help with personalized advice tailored just for you. What's on your mind today?",
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     }
   ]);
@@ -152,7 +152,7 @@ const FinancialAssistant = () => {
 
       // Create a context-aware prompt with better instructions
       const context = updatedMessages.map(msg => `${msg.type === 'user' ? 'User' : 'Assistant'}: ${msg.content}`).join('\n\n');
-      const prompt = `You are a friendly and knowledgeable financial advisor named Zeni having a natural conversation. Based on this conversation history:
+      const prompt = `You are a friendly and knowledgeable financial advisor named Vision having a natural conversation. Based on this conversation history:
 
 ${context}
 
@@ -219,7 +219,7 @@ If you don't know something or if it's outside your expertise, clearly state tha
     if (window.confirm("Are you sure you want to start a new conversation? This will clear the current chat history.")) {
       const welcomeMessage = {
         type: 'assistant',
-        content: "👋 Welcome! I'm Zeni, your personal financial guide. What financial questions can I help you with today?",
+        content: "👋 Welcome! I'm Vision, your personal financial guide. What financial questions can I help you with today?",
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         isNew: true
       };
@@ -367,7 +367,7 @@ If you don't know something or if it's outside your expertise, clearly state tha
               fontStyle: 'italic'
             }}
           >
-            {message.type === 'user' ? 'You' : 'Zeni'} • {message.timestamp || new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+            {message.type === 'user' ? 'You' : 'Vision'} • {message.timestamp || new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
           </Typography>
         </Box>
       </Box>
@@ -471,7 +471,7 @@ If you don't know something or if it's outside your expertise, clearly state tha
           </Avatar>
           <Box>
             <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-              Zeni
+              Vision
             </Typography>
             <Typography variant="caption" color="text.secondary">
               Your Personal Finance Guide

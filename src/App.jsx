@@ -184,7 +184,7 @@ const App = () => {
                 }}
                 onClick={() => setCurrentTab(-1)}
               >
-                StockSense
+                StarkFinance
               </Typography>
             </Box>
 
