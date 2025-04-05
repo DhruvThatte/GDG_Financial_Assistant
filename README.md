@@ -108,7 +108,9 @@ Contributions are welcome! Please fork the repository and submit a pull request 
 ## 📬 Contact
 
 If you have questions, suggestions, or just want to say hi, feel free to reach out via GitHub or email.
-Email-thatte14dhruv@gmail.com
+thatte14dhruv@gmail.com
+shubhankarvyas02@gmail.com
+tiwaridhruv.dh12@gmail.com
 ---
 
 Thanks for checking out **StockSense**! 🚀
