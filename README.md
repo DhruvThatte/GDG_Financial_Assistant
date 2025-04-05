@@ -34,7 +34,7 @@ StockSense aims to bridge the gap between financial literacy and smart investing
 ## 📂 Folder Structure
 
 ```
-gdg-dhruv 2/
+GDG_Financial_Assistant/
 ├── index.html             # Entry point
 ├── vite.config.js         # Vite configuration
 ├── package.json           # Project metadata and dependencies
@@ -57,7 +57,7 @@ Make sure you have **Node.js** and **npm** installed.
 
    ```bash
    git clone https://github.com/DhruvThatte/GDG_Financial_Assistant.git
-   cd stocksense
+   cd GDG_Financial_Assistant
    ```
 
 2. **Install dependencies**
